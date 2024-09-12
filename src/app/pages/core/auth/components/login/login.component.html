@@ -1,0 +1,62 @@
+<section >
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-6 col-lg-6 col-xl-4 p-5 rounded-3">
+        <h1 class="fw-bold text-dark">
+          Login
+        </h1>
+        <form [formGroup]="loginForm">
+          <!-- Email input -->
+          <mat-form-field appearance="outline" class="w-100 mt-3">
+            <mat-label>Email</mat-label>
+            <input
+              class="mt-2"
+              matInput
+              formControlName="email"
+              placeholder="email"
+            />
+            <mat-icon matSuffix color="primary">email</mat-icon>
+            <mat-error class="ps-2">required</mat-error>
+          </mat-form-field>
+
+          <!-- Password input -->
+          <mat-form-field
+            appearance="outline"
+            class="w-100 mt-3"
+            color="primary"
+          >
+            <mat-label>Password</mat-label>
+            <input class="mt-1" matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+              placeholder="password" />
+            <mat-icon matSuffix color="primary" style="cursor: pointer" (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">{{ hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            <mat-error>required</mat-error>
+          </mat-form-field>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              mat-raised-button
+              color="primary"
+              class="w-100"
+              (click)="login()"
+            >
+              Login
+            </button>
+
+            <p class="small fw-bold text-black mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a
+                (click)="register()"
+                class="link-danger"
+                style="cursor: pointer"
+                >Register</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
