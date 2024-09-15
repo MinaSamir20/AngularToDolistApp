@@ -9,6 +9,8 @@ export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
       }if([404].includes(error.status)){
         alert("Not Found");
       }
+      const e = error.message || error.statusText;
+      console.error(e);
       return throwError(() => error)
     })
   );

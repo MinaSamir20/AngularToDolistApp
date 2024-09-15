@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MaterialModule } from '../../../../shared/Modules/material.module';
+import { MaterialModule } from '../../../../../shared/Modules/material.module';
 import {
   FormBuilder,
   FormGroup,
@@ -56,7 +56,6 @@ export class LoginComponent {
       this.spinner.show();
       this.service.login(this.loginForm.value).subscribe({
         next: (user) => {
-          this.service.setToken(user.token);
           this.toastr.success('Success', 'Login Successfully', {closeButton: true, timeOut: 500});
           this.router.navigate(['/todo']);
           this.spinner.hide();

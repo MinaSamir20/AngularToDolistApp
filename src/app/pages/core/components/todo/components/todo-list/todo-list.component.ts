@@ -8,8 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
-import { CTodo, Todo } from '../../models/todo';
-import { MaterialModule } from '../../../../shared/Modules/material.module';
+import { Todo } from '../../models/todo';
+import { MaterialModule } from '../../../../../shared/Modules/material.module';
 
 @Component({
   selector: 'app-todo-list',
@@ -22,21 +22,9 @@ export class TodoListComponent {
   private service = inject(TodoService);
   private fb = inject(FormBuilder);
 
-  title: string = '';
   noFound: string = 'Not Found Any Item';
   username: string = 'user';
   todos!: Todo[];
-  update: Todo = {
-    id: 2,
-    title: 'string',
-    completed: true,
-    userId: 0,
-  };
-  create: CTodo = {
-    title: 'string',
-    completed: true,
-    userId: 0,
-  };
   taskForm!: FormGroup;
 
   CreateTodoForm() {
@@ -49,7 +37,7 @@ export class TodoListComponent {
   constructor() {
     this.getTodos();
     this.CreateTodoForm();
-    console.log(this.todos);
+    // console.log(this.todos);
     //this.updateTodo(this.update);
     //this.deleteTodo(6);
   }
@@ -58,7 +46,7 @@ export class TodoListComponent {
     this.service.getTodos().subscribe({
       next: (todo) => {
         this.todos = todo;
-        console.log(this.todos);
+        // console.log(this.todos);
       },
       error: (e) => console.log(e),
     });

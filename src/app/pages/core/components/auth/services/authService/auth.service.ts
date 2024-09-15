@@ -1,17 +1,17 @@
+import { UserResponse } from './../../models/user';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../../../../environments/environment';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Login } from '../../models/login';
 import { Register } from '../../models/register';
 import { Router } from '@angular/router';
+import { environment } from '../../../../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  //
-  private authTokenKey = 'authToken';
+  private authTokenKey = 'token';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -24,8 +24,8 @@ export class AuthService {
   }
 
   //Methods
-  public register(user: any): Observable<any> {
-    return this.http.post<any>(environment.apiUrl + 'account/register', user).pipe(
+  public register(user: Register): Observable<UserResponse> {
+    return this.http.post<UserResponse>(environment.apiUrl + 'account/register', user).pipe(
       tap(response => {
         this.setToken(response.token);
         this.isAuthenticatedSubject.next(true);
@@ -33,8 +33,9 @@ export class AuthService {
     );
   }
 
-  public login(user: Login): Observable<any> {
-    return this.http.post<{ token: string }>(environment.apiUrl + 'account/login', user).pipe(
+  public login(user: Login): Observable<UserResponse> {
+    return this.http.post<UserResponse>(environment.apiUrl + 'account/login', user).pipe(
+      //map((response:UserResponse) => ({username: response.username, token: response.token})),
       tap(response => {
         this.setToken(response.token);
         this.isAuthenticatedSubject.next(true);

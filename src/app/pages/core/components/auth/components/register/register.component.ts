@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MaterialModule } from '../../../../shared/Modules/material.module';
+import { MaterialModule } from '../../../../../shared/Modules/material.module';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';

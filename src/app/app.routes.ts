@@ -8,15 +8,15 @@ export const routes: Routes = [
   },
   {
     path: 'account/login',
-    loadComponent: () => import('./pages/core/auth/components/login/login.component').then(m => m.LoginComponent)
+    loadComponent: () => import('./pages/core/components/auth/components/login/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'account/register',
-    loadComponent: () => import('./pages/core/auth/components/register/register.component').then(m => m.RegisterComponent)
+    loadComponent: () => import('./pages/core/components/auth/components/register/register.component').then(m => m.RegisterComponent)
   },
   {
     path: 'todo',
-    loadComponent: () => import('./pages/core/todo/components/todo-list/todo-list.component').then(m => m.TodoListComponent)
+    loadComponent: () => import('./pages/core/components/todo/components/todo-list/todo-list.component').then(m => m.TodoListComponent)
   },
   {
     path: '**',
