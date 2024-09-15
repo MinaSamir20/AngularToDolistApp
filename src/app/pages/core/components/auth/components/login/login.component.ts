@@ -53,15 +53,12 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.spinner.show();
       this.service.login(this.loginForm.value).subscribe({
         next: (user) => {
           this.toastr.success('Success', 'Login Successfully', {closeButton: true, timeOut: 500});
           this.router.navigate(['/todo']);
-          this.spinner.hide();
         },
         error: () => this.toastr.error('something wrong,\n please check your email and password', 'Error', {closeButton: true, timeOut: 500}),
-        complete: () => this.spinner.hide(),
       });
     }
   }

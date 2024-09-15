@@ -1,7 +1,12 @@
 <div class="d-flex flex-column h-100 pb-0 text-center px-3 text-light">
-  <app-header/>
+  <app-header />
   <div class="flex-grow-1">
-    <router-outlet/>
+    <router-outlet />
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom" [fullScreen]="true">
+      <p style="color: white">
+        Loading...
+      </p>
+    </ngx-spinner>
   </div>
-  <app-footer/>
+  <app-footer />
 </div>

@@ -37,27 +37,22 @@ export class TodoListComponent {
   constructor() {
     this.getTodos();
     this.CreateTodoForm();
-    // console.log(this.todos);
-    //this.updateTodo(this.update);
-    //this.deleteTodo(6);
   }
 
   getTodos() {
     this.service.getTodos().subscribe({
       next: (todo) => {
         this.todos = todo;
-        // console.log(this.todos);
       },
-      error: (e) => console.log(e),
+      error: (e) => console.error(e),
     });
   }
 
   getTodo(id: number) {
     this.service.getTodo(id).subscribe({
       next: (todo) => {
-        console.log(todo);
       },
-      error: (e) => console.log(e),
+      error: (e) => console.error(e),
     });
   }
   createTodo() {
@@ -65,9 +60,9 @@ export class TodoListComponent {
     if(this.taskForm.valid){
       this.service.createTodo(this.taskForm.value).subscribe({
         next: (response) => {
-          console.log(response);
+          this.getTodos()
         },
-        error: (e) => console.log(e),
+        error: (e) => console.error(e),
       });
     }
   }
@@ -75,17 +70,17 @@ export class TodoListComponent {
     console.log(todo);
     this.service.updateTodo(todo).subscribe({
       next: (response) => {
-        console.log(response);
+        this.getTodos();
       },
-      error: (e) => console.log(e),
+      error: (e) => console.error(e),
     });
   }
   deleteTodo(id: any) {
     this.service.deleteTodo(id, this.username).subscribe({
       next: (response) => {
-        console.log(response);
+        console.info(response);
       },
-      error: (e) => console.log(e),
+      error: (e) => console.error(e),
     });
   }
 }

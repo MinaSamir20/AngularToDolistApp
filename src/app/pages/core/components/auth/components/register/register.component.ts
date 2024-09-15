@@ -64,7 +64,6 @@ export class RegisterComponent implements OnInit{
 
   register() {
     if (this.registerUserForm.valid) {
-      this.spinner.show();
       this.service.register(this.registerUserForm.value).subscribe({
         next: (user) => {
           this.toastr.success('Success', 'Register Successfully', {closeButton: true, timeOut: 500});
@@ -73,8 +72,6 @@ export class RegisterComponent implements OnInit{
         },
         error: (error) => {
           this.toastr.error('something wrong', 'Error', {closeButton: true, timeOut: 500});
-          alert(error.message);
-          this.spinner.hide();
         },
       });
     }
